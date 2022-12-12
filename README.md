@@ -1,5 +1,6 @@
 # README Generator
-undefined
+
+`[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
 
 ## Description
 
@@ -34,6 +35,10 @@ N/A
 ## Testing 
 
 Create multiple README files for different project with different answers for the prompts for testing.
+
+## Preview 
+
+![Video](https://user-images.githubusercontent.com/113260005/207175861-cc5b1f9a-c7f7-4d48-98dc-c93a0a3edfd2.webm)
 
 ## License
 
