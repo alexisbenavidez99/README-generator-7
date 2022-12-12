@@ -1,9 +1,8 @@
 // Packages
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = ({ title, description, installation, usage, license, contributions, test, username, email, badge}) => 
-`
-# ${title}
+const generateMarkdown = ({ title, description, installation, usage, license, contributions, test, username, email, badge }) => 
+`# ${title}
 ${badge}
 
 ## Description
@@ -12,11 +11,11 @@ ${description}
 
 ## Table of Contents
 
-[Installation](#installation)
-[Usage](#usage)
-[Contributions](#contributions)
-[Testing](#test)
-[License](#license)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributions](#contributions)
+- [Testing](#test)
+- [License](#license)
 
 ## Installation
 
@@ -105,8 +104,7 @@ inquirer
           name: 'license',
           choices: [
             "MIT",
-            "Other",
-            "GPLv2",
+            "Boost",
             "Apache",
             "GPLv3",
             "BSD 3-clause",
@@ -178,14 +176,33 @@ inquirer
         }
     ])
     .then((answers) => {
-        const readmeContent = generateMarkdown(answers);
-    })
+        const badge = generateBadge(answers.license);
+        const readmeContent = generateMarkdown({...answers, badge});
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+        fs.writeFile('README.md', readmeContent, (err) =>
+          err ? console.log (err) : console.log('Successfully created README!')
+        );
+    });
 
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+    function generateBadge(license) {
+        let badge = '';
+        if (license === 'MIT') {
+            badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+        } else if (license === 'Boost') {
+            badge = `[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`
+        } else if (license === 'Apache') {
+            badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+        } else if (license === 'GPLv3') {
+            badge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+        } else if (license === 'BSD 3-clause') {
+            badge = `[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)`
+        } else if (license === 'Unlicense') {
+            badge = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
+        } else if (license === 'BSD 2-clause') {
+            badge = `[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)`
+        } else if (license === 'LGPLv3') {
+            badge = `[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)`
+        } else if (license === 'AGPLv3') {
+            badge = `[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)`
+        }
+    };
