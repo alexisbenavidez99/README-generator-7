@@ -1,0 +1,23 @@
+{
+  "name": "static-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexisbenavidez99/README-generator-7.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/alexisbenavidez99/README-generator-7/issues"
+  },
+  "homepage": "https://github.com/alexisbenavidez99/README-generator-7#readme",
+  "description": ""
+}
