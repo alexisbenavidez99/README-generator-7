@@ -1,8 +1,50 @@
-// TODO: Include packages needed for this application
+// Packages
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = ({ title, description, installation, usage, license, contributions, test, username, email, badge}) => 
+`
+# ${title}
+${badge}
 
-// TODO: Create an array of questions for user input
+## Description
+
+${description}
+
+## Table of Contents
+
+[Installation](#installation)
+[Usage](#usage)
+[Contributions](#contributions)
+[Testing](#test)
+[License](#license)
+
+## Installation
+
+${installation}
+
+## Usage
+
+${usage}
+
+## Contributions
+
+${contributions}
+
+## Testing 
+
+${test}
+
+## License
+
+${license}
+
+## Questions
+
+For futher questions, please email me at ${email} or my GitHub at https://github.com/${username}
+
+`
+
+// Questions
 inquirer
     .prompt([
         {
@@ -134,7 +176,10 @@ inquirer
             }
           },
         }
-    ]);
+    ])
+    .then((answers) => {
+        const readmeContent = generateMarkdown(answers);
+    })
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
